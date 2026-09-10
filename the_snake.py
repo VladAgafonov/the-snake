@@ -55,13 +55,20 @@ class GameObject:
 class Apple(GameObject):
     """Класс яблока."""
 
-    def __init__(self, occupied_positions=[]):
+    def __init__(self, occupied_positions=None):
         """Инициализирует яблоко."""
         super().__init__(APPLE_COLOR)
+
+        if occupied_positions is None:
+            occupied_positions = []
+
         self.randomize_position(occupied_positions)
 
-    def randomize_position(self, occupied_positions=[]):
+    def randomize_position(self, occupied_positions=None):
         """Устанавливает случайную свободную позицию яблока."""
+        if occupied_positions is None:
+            occupied_positions = []
+
         self.position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
             randint(0, GRID_HEIGHT - 1) * GRID_SIZE
